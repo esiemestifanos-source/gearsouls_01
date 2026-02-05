@@ -1,0 +1,155 @@
+/* =========================
+   GEARSOULS — FUTURISTIC UI
+========================= */
+
+/* FONT IMPORT */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+/* =========================
+   VARIABLES
+========================= */
+:root {
+  --bg: #05070d;
+  --panel: #0b1020;
+  --glass: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.08);
+
+  --text: #e8ecff;
+  --muted: #9aa3c7;
+  --accent: #6cf2ff;
+  --accent-2: #7c7cff;
+
+  --radius: 16px;
+  --blur: 18px;
+  --max: 1200px;
+}
+
+/* =========================
+   RESET & GLOBAL
+========================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 80% -20%, rgba(124,124,255,0.12), transparent),
+    radial-gradient(800px 500px at 10% 10%, rgba(108,242,255,0.08), transparent),
+    var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* =========================
+   CONTAINERS
+========================= */
+.container { max-width: var(--max); margin: auto; padding: 3rem 1.5rem; }
+
+/* HEADINGS */
+h1,h2,h3 { letter-spacing: 0.08em; text-transform: uppercase; color: var(--text); }
+h2 { font-size: 1.6rem; margin-bottom: 1.5rem; }
+p { color: var(--muted); }
+
+/* =========================
+   HEADER & NAV
+========================= */
+header.brand { position: sticky; top:0; z-index:1000; background: rgba(5,7,13,0.85); border-bottom:1px solid var(--border); backdrop-filter: blur(var(--blur)); }
+
+.logo-frame {
+  display:flex; align-items:center; gap:1rem; padding:0.65rem 1.2rem;
+  border-radius:999px; background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+  border:1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.04);
+  transition: transform 0.25s cubic-bezier(.16,1,.3,1), box-shadow 0.25s, background 0.25s;
+  cursor:pointer;
+}
+
+.logo {
+  height:96px; width:auto; display:block;
+  filter: drop-shadow(0 0 15px rgba(255,255,255,0.8)) drop-shadow(0 0 30px rgba(108,242,255,0.5));
+  transition: filter 0.3s, transform 0.3s;
+  animation: logo-glow 2.5s infinite alternate;
+}
+
+@keyframes logo-glow {
+  0%,100% { filter: drop-shadow(0 0 20px rgba(108,242,255,0.7)); }
+  50% { filter: drop-shadow(0 0 35px rgba(108,242,255,1)); }
+}
+
+.brand:hover .logo-frame {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.7), 0 0 40px rgba(108,242,255,0.45), inset 0 0 10px rgba(255,255,255,0.1);
+}
+
+/* NAVIGATION */
+.site-nav { display:flex; gap:2rem; }
+.site-nav a { color: var(--muted); text-decoration:none; position:relative; font-size:0.75rem; letter-spacing:0.2em; transition: color 0.3s; }
+.site-nav a::after {
+  content:""; position:absolute; left:0; bottom:-6px; width:0; height:1px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition: width 0.3s;
+}
+.site-nav a:hover { color: var(--text); }
+.site-nav a:hover::after { width:100%; }
+
+.nav-toggle { display:none; background:none; border:none; color:var(--text); font-size:1.6rem; cursor:pointer; }
+
+/* MOBILE NAV */
+.site-nav.open { display:flex; flex-direction:column; gap:1rem; }
+
+/* =========================
+   HERO
+========================= */
+.hero { min-height:90vh; display:flex; align-items:center; }
+.hero-inner { display:grid; grid-template-columns:1.1fr 0.9fr; gap:4rem; }
+.hero h2 { font-size:2.6rem; line-height:1.15; background: linear-gradient(90deg, var(--text), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero img { width:100%; border-radius:24px; box-shadow:0 40px 80px rgba(0,0,0,0.6); transition: transform 0.5s; }
+
+/* =========================
+   BUTTONS
+========================= */
+.btn { display:inline-flex; align-items:center; justify-content:center; padding:0.8rem 1.6rem; border-radius:999px; font-size:0.75rem; letter-spacing:0.25em; text-transform:uppercase; cursor:pointer; border:1px solid var(--border); background:transparent; color:var(--text); transition: all 0.35s cubic-bezier(.16,1,.3,1); }
+.btn-primary { background: linear-gradient(90deg, var(--accent), var(--accent-2)); color:#03060b; border:none; }
+.btn:hover { transform: translateY(-3px) scale(1.03); box-shadow:0 15px 50px rgba(108,242,255,0.35); }
+
+/* =========================
+   SHOP
+========================= */
+.product-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
+.product-card { background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02)); border:1px solid var(--border); border-radius:var(--radius); padding:1.25rem; transition: all 0.45s; }
+.product-card:hover { transform: translateY(-10px); box-shadow:0 30px 80px rgba(0,0,0,0.6); }
+.product-card img { width:100%; border-radius:14px; margin-bottom:1rem; }
+
+/* =========================
+   LOOKBOOK
+========================= */
+.lookbook-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+.lookbook-grid img { width:100%; border-radius:18px; transition: transform 0.4s; }
+.lookbook-grid img:hover { transform: scale(1.07); }
+
+/* =========================
+   MODAL
+========================= */
+.modal { position:fixed; inset:0; display:none; background:rgba(5,7,13,0.9); z-index:2000; place-items:center; }
+.modal-content { background:var(--panel); border-radius:20px; padding:2rem; max-width:420px; text-align:center; color:var(--text); }
+.modal-content #close-modal { cursor:pointer; float:right; font-size:1.5rem; }
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media(max-width:900px){
+  .hero-inner, .product-grid, .lookbook-grid { grid-template-columns:1fr; }
+  .site-nav { display:none; position:absolute; top:80px; right:1rem; background:var(--panel); padding:1rem; border-radius:16px; flex-direction:column; gap:1rem; }
+  .nav-toggle { display:block; }
+}
+
+/* =========================
+   JS HELPERS
+========================= */
+.reveal { opacity:0; transform: translateY(50px); }
+.reveal.visible { opacity:1; transform: translateY(0); transition: 1.2s cubic-bezier(.16,1,.3,1); }
